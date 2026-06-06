@@ -11,12 +11,14 @@ export default defineConfig({
     alias: { "@shared": SHARED },
   },
   server: {
+//    port: 80, // can use 80 for easier access via URL
     host: true, // expose dev server on LAN too
     fs: { allow: [resolve(__dirname, ".."), SHARED] },
     proxy: {
       "/api": { target: SERVER, changeOrigin: true },
       "/ws": { target: SERVER, ws: true, changeOrigin: true },
     },
+    allowedHosts: ['titan.local'],
   },
   build: {
     outDir: "dist",

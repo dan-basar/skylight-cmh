@@ -447,7 +447,6 @@ export class Renderer {
       if (n) {
         cx /= n;
         cy /= n;
-        const labelY = cy + 25;
         ctx.save();
         ctx.font = `700 13px ${cfg.fonts.label}`;
         ctx.fillStyle = rgba(rwyRgb, 0.5 * cfg.brightness);
@@ -458,7 +457,7 @@ export class Renderer {
         } catch {
           /* noop */
         }
-        ctx.fillText(ap.name, cx, labelY);
+        ctx.fillText(ap.name, cx, cy);
         try {
           ctx.letterSpacing = "0px";
         } catch {
