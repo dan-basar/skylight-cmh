@@ -26,5 +26,41 @@ export const SFO: Airport = {
   ],
 };
 
-/** Airports drawn on the map (currently just SFO; easy to extend). */
-export const AIRPORTS: Airport[] = [SFO];
+export const CMH: Airport = {
+  icao: "KCMH",
+  name: "CMH",
+  runways: [
+    { leIdent: "10R", heIdent: "28L", le: [39.993667, -82.909167], he: [39.991667, -82.873167], widthFt: 150 },
+    { leIdent: "10L", heIdent: "28R", le: [40.003167, -82.907667], he: [40.001667, -82.879167], widthFt: 150 },
+  ],
+};
+
+export const OSU: Airport = {
+  icao: "KOSU",
+  name: "OSU",
+  runways: [
+    { leIdent: "09R", heIdent: "27L", le: [40.077167, -83.081667], he: [40.077833, -83.063667], widthFt: 100 },
+    { leIdent: "09L", heIdent: "27R", le: [40.082667, -83.078833], he: [40.083167, -83.068167], widthFt: 100 },
+    { leIdent: "05",  heIdent: "23",  le: [40.076333, -83.078500], he: [40.082667, -83.068833], widthFt: 100 },
+  ],
+};
+
+export const LCK: Airport = {
+  icao: "KLCK",
+  name: "LCK",
+  runways: [
+    { leIdent: "05R", heIdent: "23L", le: [39.801000, -82.942000], he: [39.824500, -82.911333], widthFt: 200 },
+    { leIdent: "05L", heIdent: "23R", le: [39.803333, -82.944000], he: [39.826333, -82.914000], widthFt: 150 },
+  ],
+};
+
+export const TZR: Airport = {
+  icao: "KTZR",
+  name: "TZR",
+  runways: [
+    { leIdent: "04", heIdent: "22", le: [39.894833, -83.142167], he: [39.907500, -83.131667], widthFt: 100 },
+  ],
+};
+
+/** Airports drawn on the map. */
+export const AIRPORTS: Airport[] = [CMH, OSU, TZR, LCK];

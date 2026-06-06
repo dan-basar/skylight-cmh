@@ -113,17 +113,17 @@ export interface Config {
 export const DEFAULT_CONFIG: Config = {
   // Default center: San Francisco International (SFO). Set this to your own
   // location — ideally where you'll be looking up at the ceiling.
-  centerLat: 37.6213,
-  centerLon: -122.379,
-  radiusMiles: 3,
+  centerLat: 40.0061114,
+  centerLon: -83.1410329,
+  radiusMiles: 15,
 
   rotationDeg: 0,
-  mirrorX: true,
+  mirrorX: false,
   mirrorY: false,
   labelRotationDeg: 0,
 
   minAltitudeFt: 100,
-  maxAltitudeFt: 60000,
+  maxAltitudeFt: 5000,
   hideOnGround: true,
 
   interpolate: true,
@@ -148,7 +148,7 @@ export const DEFAULT_CONFIG: Config = {
   },
   glyphSizePx: 22,
   altitudeColor: true,
-  trailSeconds: 45,
+  trailSeconds: 90,
   brightness: 1,
 
   labelDensity: "all",

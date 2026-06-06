@@ -443,12 +443,13 @@ export class Renderer {
         cy += (a.y + b.y) / 2;
         n++;
       }
-      // Airport label at the runway centroid.
+      // Airport label above the runway centroid.
       if (n) {
         cx /= n;
         cy /= n;
+        const labelY = cy + 25;
         ctx.save();
-        ctx.font = `300 13px ${cfg.fonts.label}`;
+        ctx.font = `700 13px ${cfg.fonts.label}`;
         ctx.fillStyle = rgba(rwyRgb, 0.5 * cfg.brightness);
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
@@ -457,7 +458,7 @@ export class Renderer {
         } catch {
           /* noop */
         }
-        ctx.fillText(ap.name, cx, cy);
+        ctx.fillText(ap.name, cx, labelY);
         try {
           ctx.letterSpacing = "0px";
         } catch {
