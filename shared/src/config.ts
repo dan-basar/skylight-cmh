@@ -123,7 +123,7 @@ export const DEFAULT_CONFIG: Config = {
   labelRotationDeg: 0,
 
   minAltitudeFt: 100,
-  maxAltitudeFt: 5000,
+  maxAltitudeFt: 12000,
   hideOnGround: true,
 
   interpolate: true,

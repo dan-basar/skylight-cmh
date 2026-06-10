@@ -12,3 +12,9 @@ data/
 .env.local
 .idea/
 .vscode/
+
+# Dump1090
+Dump1090/
+SDR#.lnk
+
+

@@ -371,8 +371,8 @@ export class Renderer {
       ctx.setLineDash([]);
       // Center mark.
       ctx.beginPath();
-      ctx.arc(cx, cy, 2, 0, Math.PI * 2);
-      ctx.fillStyle = rgba(hexToRgb(cfg.palette.grid), 0.7 * cfg.brightness);
+      ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+      ctx.fillStyle = rgba([59, 130, 246], 0.9 * cfg.brightness);
       ctx.fill();
       ctx.restore();
     }
