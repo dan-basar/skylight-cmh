@@ -23,6 +23,8 @@ interface RawAircraft {
   category?: string;
   r?: string;
   t?: string;
+  dep?: string;
+  dst?: string;
   seen?: number;
   rssi?: number;
 }
@@ -45,6 +47,8 @@ function normalize(raw: RawAircraft, ts: number): Aircraft | null {
     onGround,
     registration: raw.r,
     typeCode: raw.t,
+    origin: raw.dep,
+    destination: raw.dst,
     seen: raw.seen,
     rssi: raw.rssi,
     ts,
@@ -225,8 +229,8 @@ export class Poller {
     const e = this.o.enricher.enrichSync(ac.hex, ac.flight, now);
     if (e.route) {
       ac.airline = ac.airline ?? e.route.airline;
-      ac.origin = e.route.origin ?? ac.origin;
-      ac.destination = e.route.destination ?? ac.destination;
+      ac.origin = ac.origin ?? e.route.origin;
+      ac.destination = ac.destination ?? e.route.destination;
       ac.originName = e.route.originName ?? ac.originName;
       ac.destName = e.route.destName ?? ac.destName;
       ac.originLat = e.route.originLat ?? ac.originLat;

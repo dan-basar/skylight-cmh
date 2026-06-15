@@ -797,6 +797,7 @@ export class Renderer {
     const out: { text: string; kind: "title" | "sub" }[] = [];
     const title = f.flight ? ac.flight ?? ac.hex.toUpperCase() : ac.airline;
     if (title) out.push({ text: title, kind: "title" });
+    if (f.owner && ac.owner) out.push({ text: ac.owner, kind: "sub" });
 
     const sub: string[] = [];
     if (f.type && (ac.typeName || ac.typeCode)) sub.push(ac.typeName ?? ac.typeCode!);
@@ -821,7 +822,6 @@ export class Renderer {
       }
     }
     if (f.registration && ac.registration) out.push({ text: ac.registration, kind: "sub" });
-    if (f.owner && ac.owner) out.push({ text: ac.owner, kind: "sub" });
     return out;
   }
 
