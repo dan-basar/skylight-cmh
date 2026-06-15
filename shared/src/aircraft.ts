@@ -47,6 +47,8 @@ export interface Aircraft {
   originLon?: number;
   destLat?: number;
   destLon?: number;
+  /** FAA-registered owner name (US aircraft only). */
+  owner?: string;
 
   /** Server timestamp (ms) of the snapshot this fix came from. */
   ts?: number;

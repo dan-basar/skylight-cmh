@@ -821,6 +821,7 @@ export class Renderer {
       }
     }
     if (f.registration && ac.registration) out.push({ text: ac.registration, kind: "sub" });
+    if (f.owner && ac.owner) out.push({ text: ac.owner, kind: "sub" });
     return out;
   }
 

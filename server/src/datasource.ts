@@ -6,6 +6,7 @@ import type { Aircraft, Config, DataSource } from "@shared/index.js";
 import type { SourceStatus } from "@shared/index.js";
 import { lookupAirline, lookupType } from "./enrich/tables.js";
 import type { RouteEnricher } from "./enrich/routes.js";
+import type { FaaLookup } from "./enrich/faa.js";
 
 /** Raw readsb-style aircraft record (subset we use). */
 interface RawAircraft {
@@ -72,6 +73,7 @@ export interface PollerOptions {
   apiPollMs: number;
   getConfig: () => Config;
   enricher: RouteEnricher;
+  faaLookup?: FaaLookup;
   onSnapshot: (now: number, aircraft: Aircraft[]) => void;
   onStatus: (status: SourceStatus) => void;
 }
@@ -110,6 +112,7 @@ interface StickyEnrichment {
   originLon?: number;
   destLat?: number;
   destLon?: number;
+  owner?: string;
   lastSeen: number;
 }
 
@@ -250,6 +253,10 @@ export class Poller {
     ac.originLon = ac.originLon ?? prev?.originLon;
     ac.destLat = ac.destLat ?? prev?.destLat;
     ac.destLon = ac.destLon ?? prev?.destLon;
+
+    // FAA owner lookup — after sticky merge so registration is maximally resolved.
+    ac.owner = this.o.faaLookup?.lookupOwner(ac.registration) ?? prev?.owner;
+
     this.sticky.set(ac.hex, {
       typeName: ac.typeName,
       airline: ac.airline,
@@ -262,6 +269,7 @@ export class Poller {
       originLon: ac.originLon,
       destLat: ac.destLat,
       destLon: ac.destLon,
+      owner: ac.owner,
       lastSeen: now,
     });
   }

@@ -25,6 +25,7 @@ const FIELD_LABELS: Record<keyof ShowFields, string> = {
   verticalRate: "Vert. rate",
   destination: "Destination",
   registration: "Registration",
+  owner: "Owner",
 };
 
 export function Control() {
