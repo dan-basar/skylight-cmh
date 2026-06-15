@@ -33,6 +33,7 @@ export interface ShowFields {
   verticalRate: boolean;
   destination: boolean;
   registration: boolean;
+  owner: boolean;
 }
 
 export interface Config {
@@ -162,6 +163,7 @@ export const DEFAULT_CONFIG: Config = {
     verticalRate: false,
     destination: true,
     registration: false,
+    owner: true,
   },
 
   rangeRings: true,

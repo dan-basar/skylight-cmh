@@ -10,6 +10,7 @@ import express from "express";
 import type { DataSource } from "@shared/index.js";
 import { ConfigStore } from "./config-store.js";
 import { RouteEnricher } from "./enrich/routes.js";
+import { FaaLookup } from "./enrich/faa.js";
 import { Poller } from "./datasource.js";
 import { Hub } from "./hub.js";
 import { TleStore } from "./tle.js";
@@ -44,6 +45,9 @@ async function main(): Promise<void> {
   const tleStore = new TleStore(resolve(DATA_DIR, "tle-cache.json"));
   await tleStore.load();
 
+  const faaLookup = new FaaLookup(DATA_DIR);
+  await faaLookup.load();
+
   const app = express();
   app.use(express.json());
 
@@ -63,6 +67,7 @@ async function main(): Promise<void> {
     apiPollMs: API_POLL_MS,
     getConfig: () => store.get(),
     enricher,
+    faaLookup,
     onSnapshot: (now, aircraft) => hub.broadcastAircraft(now, aircraft),
     onStatus: (status) => hub.broadcastStatus(status),
   });
