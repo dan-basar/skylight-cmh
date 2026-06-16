@@ -29,6 +29,12 @@ interface RawAircraft {
   rssi?: number;
 }
 
+/** Only accept values that look like ICAO/IATA airport identifiers (letters only, 3–5 chars). */
+const validAirport = (s?: string): string | undefined =>
+  typeof s === "string" && /^[A-Z]{3,5}$/i.test(s.trim())
+    ? s.trim().toUpperCase()
+    : undefined;
+
 function normalize(raw: RawAircraft, ts: number): Aircraft | null {
   if (!raw.hex) return null;
   const onGround = raw.alt_baro === "ground";
@@ -47,8 +53,8 @@ function normalize(raw: RawAircraft, ts: number): Aircraft | null {
     onGround,
     registration: raw.r,
     typeCode: raw.t,
-    origin: raw.dep,
-    destination: raw.dst,
+    origin: validAirport(raw.dep),
+    destination: validAirport(raw.dst),
     seen: raw.seen,
     rssi: raw.rssi,
     ts,
