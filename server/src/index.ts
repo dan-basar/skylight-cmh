@@ -23,7 +23,7 @@ const PORT = Number(process.env.PORT ?? 3000);
 const HOST = process.env.HOST ?? "0.0.0.0";
 const SOURCE = (process.env.DATA_SOURCE as DataSource) ?? "radio";
 const RADIO_URL =
-  process.env.AIRCRAFT_JSON_URL ?? "http://localhost:8080/data/aircraft.json";
+  process.env.AIRCRAFT_JSON_URL ?? "http://192.168.0.20:8080/data/aircraft.json";
 const API_URL =
   process.env.API_URL ?? "https://api.airplanes.live/v2/point/{lat}/{lon}/{r}";
 const POLL_MS = Number(process.env.POLL_MS ?? 1000);
